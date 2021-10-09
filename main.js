@@ -9,13 +9,21 @@
 // ];
 
 let board = [
-    [0, 0, 0, 0, 0, 0],
-    [0, 1, 1, 0, 0, 0],
-    [0, 1, 0, 0, 0, 0],
-    [0, 0, 0, 0, 1, 0],
-    [0, 0, 0, 1, 1, 0],
-    [0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 1],
+    [0, 0, 0, 1, 1],
+    [0, 0, 0, 0, 1],
+    [0, 0, 0, 0, 0],
 ];
+
+// let board = [
+//     [0, 0, 0, 0, 0, 0],
+//     [0, 1, 1, 0, 0, 0],
+//     [0, 1, 0, 0, 0, 0],
+//     [0, 0, 0, 0, 1, 0],
+//     [0, 0, 0, 1, 1, 0],
+//     [0, 0, 0, 0, 0, 0],
+// ];
 
 // let board = [
 //     [0, 0, 0, 0, 0, 0],
@@ -26,68 +34,69 @@ let board = [
 //     [0, 0, 0, 0, 0, 0],
 // ];
 
-const liveNeighbors = (boardA, x, y) => {
-    debugger;
+const liveNeighbors = (boardReference, x, y) => {
     let neighbors = 0;
-    debugger;
 
     if (x === 0 && y === 0) {
         // top left corner case
-        if (boardA[x][y + 1] === 1) neighbors++;
-        if (boardA[x + 1][y] === 1) neighbors++;
-        if (boardA[x + 1][y + 1] === 1) neighbors++;
-    } else if (x === 0 && y === boardA[y].length - 1) {
+        if (boardReference[x][y + 1] === 1) neighbors++;
+        if (boardReference[x + 1][y] === 1) neighbors++;
+        if (boardReference[x + 1][y + 1] === 1) neighbors++;
+    } else if (x === 0 && y === boardReference[y].length - 1) {
         // top right corner case
-        if (boardA[x][y - 1] === 1) neighbors++;
-        if (boardA[x + 1][y - 1] === 1) neighbors++;
-        if (boardA[x + 1][y] === 1) neighbors++;
-    } else if (x === boardA[x].length - 1 && y === 0) {
+        if (boardReference[x][y - 1] === 1) neighbors++;
+        if (boardReference[x + 1][y - 1] === 1) neighbors++;
+        if (boardReference[x + 1][y] === 1) neighbors++;
+    } else if (x === boardReference[x].length - 1 && y === 0) {
         // bottom left corner case
-        if (boardA[x - 1][y] === 1) neighbors++;
-        if (boardA[x][y + 1] === 1) neighbors++;
-        if (boardA[x - 1][y + 1] === 1) neighbors++;
-    } else if (x === boardA[x].length - 1 && y === boardA[y].length - 1) {
+        if (boardReference[x - 1][y] === 1) neighbors++;
+        if (boardReference[x][y + 1] === 1) neighbors++;
+        if (boardReference[x - 1][y + 1] === 1) neighbors++;
+    } else if (
+        x === boardReference[x].length - 1 &&
+        y === boardReference[y].length - 1
+    ) {
         // bottom right corner case
-        if (boardA[x][y - 1] === 1) neighbors++;
-        if (boardA[x - 1][y - 1] === 1) neighbors++;
-        if (boardA[x - 1][y] === 1) neighbors++;
+        if (boardReference[x][y - 1] === 1) neighbors++;
+        if (boardReference[x - 1][y - 1] === 1) neighbors++;
+        if (boardReference[x - 1][y] === 1) neighbors++;
     } else if (x === 0) {
         // top border case
-        if (boardA[x][y - 1] === 1) neighbors++;
-        if (boardA[x + 1][y - 1] === 1) neighbors++;
-        if (boardA[x + 1][y] === 1) neighbors++;
-        if (boardA[x + 1][y + 1] === 1) neighbors++;
-        if (boardA[x][y + 1] === 1) neighbors++;
-    } else if (x === boardA[x].length - 1) {
+        if (boardReference[x][y - 1] === 1) neighbors++;
+        if (boardReference[x + 1][y - 1] === 1) neighbors++;
+        if (boardReference[x + 1][y] === 1) neighbors++;
+        if (boardReference[x + 1][y + 1] === 1) neighbors++;
+        if (boardReference[x][y + 1] === 1) neighbors++;
+    } else if (x === boardReference[x].length - 1) {
         // bottom border case
-        if (boardA[x][y - 1] === 1) neighbors++;
-        if (boardA[x - 1][y - 1] === 1) neighbors++;
-        if (boardA[x - 1][y] === 1) neighbors++;
-        if (boardA[x - 1][y + 1] === 1) neighbors++;
-        if (boardA[x][y + 1] === 1) neighbors++;
-    } else if (y === boardA[y].length - 1) {
+        if (boardReference[x][y - 1] === 1) neighbors++;
+        if (boardReference[x - 1][y - 1] === 1) neighbors++;
+        if (boardReference[x - 1][y] === 1) neighbors++;
+        if (boardReference[x - 1][y + 1] === 1) neighbors++;
+        if (boardReference[x][y + 1] === 1) neighbors++;
+    } else if (y === boardReference[y].length - 1) {
         // right border case
-        if (boardA[x - 1][y] === 1) neighbors++;
-        if (boardA[x - 1][y - 1] === 1) neighbors++;
-        if (boardA[x][y - 1] === 1) neighbors++;
-        if (boardA[x + 1][y - 1] === 1) neighbors++;
-        if (boardA[x + 1][y] === 1) neighbors++;
+        if (boardReference[x - 1][y] === 1) neighbors++;
+        if (boardReference[x - 1][y - 1] === 1) neighbors++;
+        if (boardReference[x][y - 1] === 1) neighbors++;
+        if (boardReference[x + 1][y - 1] === 1) neighbors++;
+        if (boardReference[x + 1][y] === 1) neighbors++;
     } else if (y === 0) {
         // left border case
-        if (boardA[x - 1][y] === 1) neighbors++;
-        if (boardA[x - 1][y + 1] === 1) neighbors++;
-        if (boardA[x][y + 1] === 1) neighbors++;
-        if (boardA[x + 1][y + 1] === 1) neighbors++;
-        if (boardA[x + 1][y] === 1) neighbors++;
+        if (boardReference[x - 1][y] === 1) neighbors++;
+        if (boardReference[x - 1][y + 1] === 1) neighbors++;
+        if (boardReference[x][y + 1] === 1) neighbors++;
+        if (boardReference[x + 1][y + 1] === 1) neighbors++;
+        if (boardReference[x + 1][y] === 1) neighbors++;
     } else {
-        if (boardA[x - 1][y] === 1) neighbors++;
-        if (boardA[x - 1][y - 1] === 1) neighbors++;
-        if (boardA[x][y - 1] === 1) neighbors++;
-        if (boardA[x + 1][y - 1] === 1) neighbors++;
-        if (boardA[x + 1][y] === 1) neighbors++;
-        if (boardA[x + 1][y + 1] === 1) neighbors++;
-        if (boardA[x][y + 1] === 1) neighbors++;
-        if (boardA[x - 1][y + 1] === 1) neighbors++;
+        if (boardReference[x - 1][y] === 1) neighbors++;
+        if (boardReference[x - 1][y - 1] === 1) neighbors++;
+        if (boardReference[x][y - 1] === 1) neighbors++;
+        if (boardReference[x + 1][y - 1] === 1) neighbors++;
+        if (boardReference[x + 1][y] === 1) neighbors++;
+        if (boardReference[x + 1][y + 1] === 1) neighbors++;
+        if (boardReference[x][y + 1] === 1) neighbors++;
+        if (boardReference[x - 1][y + 1] === 1) neighbors++;
     }
     return neighbors;
 };
@@ -119,7 +128,9 @@ const generateNewBoard = (currentBoard) => {
     return board;
 };
 
-setInterval(() => {
-    board = generateNewBoard(board);
-    console.log(board);
-}, 1000);
+// setInterval(() => {
+//     board = generateNewBoard(board);
+//     console.log(board);
+// }, 1000);
+
+module.exports = { liveNeighbors, generateNewBoard };
