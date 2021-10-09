@@ -18,27 +18,24 @@ const isZero = (item) => {
 };
 let newBoard;
 
-let i = 0;
-let j = 0;
-
-const liveNeighbors = (boardA, a, b) => {
+const liveNeighbors = (boardA, i, j) => {
     debugger;
-    const neighbors = [];
+    let neighbors = 0;
     debugger;
+    if (i === 0 && j === 0) {
+        if (boardA[i][j + 1] === 1) neighbors++;
+        if (boardA[i + 1][j] === 1) neighbors++;
+        if (boardA[i + 1][j + 1] === 1) neighbors++;
+    }
     neighbors.push(
-        boardA[a - 1][b - 1],
-        boardA[a - 1][b],
-        boardA[a - 1][b + 1],
-        boardA[a][b - 1],
-        boardA[a][b + 1],
-        boardA[a + 1][b - 1],
-        boardA[a + 1][b],
-        boardA[a + 1]
-    );
-
-    return neighbors.reduce(
-        (accumulator, neighbor) => accumulator + neighbor,
-        0
+        boardA[i - 1][j - 1],
+        boardA[i - 1][j],
+        boardA[i - 1][j + 1],
+        boardA[i][j - 1],
+        boardA[i][j + 1],
+        boardA[i + 1][j - 1],
+        boardA[i + 1][j],
+        boardA[i + 1][i + 1]
     );
 };
 
