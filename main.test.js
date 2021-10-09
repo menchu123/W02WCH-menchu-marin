@@ -205,3 +205,78 @@ describe("Given the liveNeighbors fuction", () => {
         });
     });
 });
+
+describe("Given the generateNewBoard fuction", () => {
+    describe("When it recieves a 5x5 board of 0s and a vertical line of 1s in the center", () => {
+        test("Then it should return a copy of the board that has a horizontal line", () => {
+            const board = [
+                [0, 0, 0, 0, 0],
+                [0, 0, 1, 0, 0],
+                [0, 0, 1, 0, 0],
+                [0, 0, 1, 0, 0],
+                [0, 0, 0, 0, 0],
+            ];
+            const expected = [
+                [0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0],
+                [0, 1, 1, 1, 0],
+                [0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0],
+            ];
+
+            const result = generateNewBoard(board);
+
+            expect(result).toEqual(expected);
+        });
+    });
+
+    describe("When it recieves a 5x5 board of 0s and two shapes of 1s in the corners", () => {
+        test("Then it should return a copy of the board that has 2 squares of 1s", () => {
+            const board = [
+                [0, 0, 0, 0, 0, 0],
+                [0, 1, 1, 0, 0, 0],
+                [0, 1, 0, 0, 0, 0],
+                [0, 0, 0, 0, 1, 0],
+                [0, 0, 0, 1, 1, 0],
+                [0, 0, 0, 0, 0, 0],
+            ];
+            const expected = [
+                [0, 0, 0, 0, 0, 0],
+                [0, 1, 1, 0, 0, 0],
+                [0, 1, 1, 0, 0, 0],
+                [0, 0, 0, 1, 1, 0],
+                [0, 0, 0, 1, 1, 0],
+                [0, 0, 0, 0, 0, 0],
+            ];
+
+            const result = generateNewBoard(board);
+
+            expect(result).toEqual(expected);
+        });
+    });
+
+    describe("When it recieves a 5x5 board of 0s and two shapes of 1s in the corners", () => {
+        test("Then it should return a copy of the board that has 2 squares of 1s", () => {
+            const board = [
+                [0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 1, 0, 0],
+                [0, 1, 0, 0, 1, 0],
+                [0, 1, 0, 0, 1, 0],
+                [0, 0, 1, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0],
+            ];
+            const expected = [
+                [0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0],
+                [0, 0, 1, 1, 1, 0],
+                [0, 1, 1, 1, 0, 0],
+                [0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0],
+            ];
+
+            const result = generateNewBoard(board);
+
+            expect(result).toEqual(expected);
+        });
+    });
+});
