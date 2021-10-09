@@ -1,19 +1,30 @@
 // crear array de 5x5
 
-const board = [
-    [0, 0, 0, 0, 0],
-    [0, 0, 1, 0, 0],
-    [0, 0, 1, 0, 0],
-    [0, 0, 1, 0, 0],
-    [0, 0, 0, 0, 0],
+// let board = [
+//     [0, 0, 0, 0, 0],
+//     [0, 0, 1, 0, 0],
+//     [0, 0, 1, 0, 0],
+//     [0, 0, 1, 0, 0],
+//     [0, 0, 0, 0, 0],
+// ];
+
+let board = [
+    [0, 0, 0, 0, 0, 0],
+    [0, 1, 1, 0, 0, 0],
+    [0, 1, 0, 0, 0, 0],
+    [0, 0, 0, 0, 1, 0],
+    [0, 0, 0, 1, 1, 0],
+    [0, 0, 0, 0, 0, 0],
 ];
 
-const isOne = (item) => {
-    item === 1;
-};
-const isZero = (item) => {
-    item === 0;
-};
+// let board = [
+//     [0, 0, 0, 0, 0, 0],
+//     [0, 0, 0, 1, 0, 0],
+//     [0, 1, 0, 0, 1, 0],
+//     [0, 1, 0, 0, 1, 0],
+//     [0, 0, 1, 0, 0, 0],
+//     [0, 0, 0, 0, 0, 0],
+// ];
 
 const liveNeighbors = (boardA, x, y) => {
     debugger;
@@ -83,15 +94,16 @@ const liveNeighbors = (boardA, x, y) => {
 
 const boardLoop = (currentBoard) => {
     debugger;
-    const newBoard = [[], [], [], [], []];
+    const newBoard = [];
 
     debugger;
     for (let x = 0; x < currentBoard.length; x++) {
+        newBoard.push([]);
         for (let y = 0; y < currentBoard[x].length; y++) {
             const neighbors = liveNeighbors(currentBoard, x, y);
             debugger;
             if (currentBoard[x][y] === 1) {
-                if (neighbors < 2 && neighbors > 4) {
+                if (neighbors < 2 || neighbors >= 4) {
                     debugger;
                     newBoard[x][y] = 0;
                     debugger;
@@ -109,15 +121,11 @@ const boardLoop = (currentBoard) => {
             }
         }
     }
-    return newBoard;
+    board = newBoard;
+    return board;
 };
 
-console.table(board);
-
-const newBoard = boardLoop(board);
-
-console.table(newBoard);
-
-const neighbors = liveNeighbors(board, 3, 2);
-
-console.log(neighbors);
+setInterval(() => {
+    board = boardLoop(board);
+    console.log(board);
+}, 1000);
