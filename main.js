@@ -119,7 +119,9 @@ const generateNewBoard = (currentBoard) => {
     return board;
 };
 
-setInterval(() => {
-    board = generateNewBoard(board);
-    console.log(board);
-}, 1000);
+// setInterval(() => {
+//     board = generateNewBoard(board);
+//     console.log(board);
+// }, 1000);
+
+module.exports = { liveNeighbors, generateNewBoard };
