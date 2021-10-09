@@ -16,7 +16,6 @@ const isOne = (item) => {
 const isZero = (item) => {
     item === 0;
 };
-let newBoard;
 
 const liveNeighbors = (boardA, x, y) => {
     debugger;
@@ -71,48 +70,38 @@ const liveNeighbors = (boardA, x, y) => {
         if (boardA[x][y + 1] === 1) neighbors++;
         if (boardA[x + 1][y + 1] === 1) neighbors++;
         if (boardA[x + 1][y] === 1) neighbors++;
+    } else {
+        if (boardA[x - 1][y] === 1) neighbors++;
+        if (boardA[x - 1][y - 1] === 1) neighbors++;
+        if (boardA[x][y - 1] === 1) neighbors++;
+        if (boardA[x + 1][y - 1] === 1) neighbors++;
+        if (boardA[x + 1][y] === 1) neighbors++;
+        if (boardA[x + 1][y + 1] === 1) neighbors++;
+        if (boardA[x][y + 1] === 1) neighbors++;
+        if (boardA[x - 1][y + 1] === 1) neighbors++;
     }
-    if (boardA[x - 1][y] === 1) neighbors++;
-    if (boardA[x - 1][y - 1] === 1) neighbors++;
-    if (boardA[x][y - 1] === 1) neighbors++;
-    if (boardA[x + 1][y - 1] === 1) neighbors++;
-    if (boardA[x + 1][y] === 1) neighbors++;
-    if (boardA[x + 1][y + 1] === 1) neighbors++;
-    if (boardA[x][y + 1] === 1) neighbors++;
-    if (boardA[x - 1][y + 1] === 1) neighbors++;
-
-    // neighbors.push(
-    //     boardA[i - 1][j - 1],
-    //     boardA[i - 1][j],
-    //     boardA[i - 1][j + 1],
-    //     boardA[i][j - 1],
-    //     boardA[i][j + 1],
-    //     boardA[i + 1][j - 1],
-    //     boardA[i + 1][j],
-    //     boardA[i + 1][i + 1]
-    // );
     return neighbors;
 };
 
 const boardLoop = (currentBoard) => {
     debugger;
-    newBoard = currentBoard.slice();
+    const newBoard = currentBoard.slice();
 
     debugger;
     for (let x = 0; x < newBoard.length; x++) {
         for (let y = 0; y < newBoard[x].length; y++) {
-            const neighbors = liveNeighbors(currentBoard, x, y);
+            const neighbors = liveNeighbors(newBoard, x, y);
             debugger;
-            if (isOne(currentBoard[x][y]) && neighbors >= 2 && neighbors < 4) {
+            if (isOne(newBoard[x][y]) && neighbors >= 2 && neighbors < 4) {
                 debugger;
                 return;
             }
-            if (isOne(currentBoard[x][y]) && neighbors < 2 && neighbors > 4) {
+            if (isOne(newBoard[x][y]) && neighbors < 2 && neighbors > 4) {
                 debugger;
                 newBoard[x][y] = 0;
                 return;
             }
-            if (isZero(currentBoard[x][y], x, y) && neighbors === 3) {
+            if (isZero(newBoard[x][y], x, y) && neighbors === 3) {
                 debugger;
                 newBoard[x][y] = 1;
             }
@@ -121,6 +110,10 @@ const boardLoop = (currentBoard) => {
     return newBoard;
 };
 
-newBoard = boardLoop(board);
+const newBoard = boardLoop(board);
 
-console.log(newBoard);
+console.table(newBoard);
+
+const neighbors = liveNeighbors(board, 3, 2);
+
+console.log(neighbors);
