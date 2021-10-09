@@ -1,0 +1,26 @@
+body {
+    background-color: #81b29a;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+}
+
+.game {
+    width: 500px;
+    height: 500px;
+    background-color: #3d405b;
+    display: flex;
+    flex-direction: column;
+}
+
+.game__row {
+    flex-grow: 1;
+    display: flex;
+}
+
+.game__col {
+    border: 0.1em #f4f1de solid;
+    flex-grow: 1;
+}

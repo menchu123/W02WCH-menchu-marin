@@ -136,12 +136,12 @@ const updateBoard = (currentBoard) => {
 const generateBoard = () => {
     const gameBoard = document.querySelector(".game");
 
-    for (let row = 0; row < 10; row++) {
+    for (let row = 0; row < 20; row++) {
         const newRow = document.createElement("div");
         gameBoard.appendChild(newRow);
         newRow.classList.add("game__row", `${row}`);
 
-        for (let col = 0; col < 10; col++) {
+        for (let col = 0; col < 20; col++) {
             const newCol = document.createElement("div");
             newRow.appendChild(newCol);
             newCol.classList.add("game__col", `${row}-${col}`);
