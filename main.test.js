@@ -1,6 +1,6 @@
 const { liveNeighbors, updateBoard } = require("./main");
 
-describe("Given the liveNeighbors fuction", () => {
+describe("Given the liveNeighbors function", () => {
     describe("When it recieves a 3x3 board of 1s and the position of an item 0 in the bottom left corner", () => {
         test("Then it should return that the item has 3 neighbors", () => {
             const board = [
