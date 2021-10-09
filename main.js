@@ -101,7 +101,7 @@ const liveNeighbors = (boardReference, x, y) => {
     return neighbors;
 };
 
-const generateNewBoard = (currentBoard) => {
+const updateBoard = (currentBoard) => {
     const newBoard = [];
 
     for (let x = 0; x < currentBoard.length; x++) {
@@ -129,8 +129,26 @@ const generateNewBoard = (currentBoard) => {
 };
 
 // setInterval(() => {
-//     board = generateNewBoard(board);
+//     board = updateBoard(board);
 //     console.log(board);
 // }, 1000);
 
-module.exports = { liveNeighbors, generateNewBoard };
+const generateBoard = () => {
+    const gameBoard = document.querySelector(".game");
+
+    for (let row = 0; row < 20; row++) {
+        const newRow = document.createElement("div");
+        gameBoard.appendChild(newRow);
+        newRow.classList.add("game__row", `${row}`);
+
+        for (let col = 0; col < 20; col++) {
+            const newCol = document.createElement("div");
+            newRow.appendChild(newCol);
+            newCol.classList.add("game__col", `${row}-${col}`);
+        }
+    }
+};
+
+generateBoard();
+
+module.exports = { liveNeighbors, updateBoard };
