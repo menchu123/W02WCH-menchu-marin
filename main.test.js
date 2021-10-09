@@ -1,4 +1,4 @@
-const { liveNeighbors, generateNewBoard } = require("./main");
+const { liveNeighbors, updateBoard } = require("./main");
 
 describe("Given the liveNeighbors fuction", () => {
     describe("When it recieves a 3x3 board of 1s and the position of an item 0 in the bottom left corner", () => {
@@ -206,7 +206,7 @@ describe("Given the liveNeighbors fuction", () => {
     });
 });
 
-describe("Given the generateNewBoard fuction", () => {
+describe("Given the updateBoard fuction", () => {
     describe("When it recieves a 5x5 board of 0s and a vertical line of 1s in the center", () => {
         test("Then it should return a copy of the board that has a horizontal line", () => {
             const board = [
@@ -224,7 +224,7 @@ describe("Given the generateNewBoard fuction", () => {
                 [0, 0, 0, 0, 0],
             ];
 
-            const result = generateNewBoard(board);
+            const result = updateBoard(board);
 
             expect(result).toEqual(expected);
         });
@@ -249,7 +249,7 @@ describe("Given the generateNewBoard fuction", () => {
                 [0, 0, 0, 0, 0, 0],
             ];
 
-            const result = generateNewBoard(board);
+            const result = updateBoard(board);
 
             expect(result).toEqual(expected);
         });
@@ -274,7 +274,7 @@ describe("Given the generateNewBoard fuction", () => {
                 [0, 0, 0, 0, 0, 0],
             ];
 
-            const result = generateNewBoard(board);
+            const result = updateBoard(board);
 
             expect(result).toEqual(expected);
         });

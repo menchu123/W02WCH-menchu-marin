@@ -101,7 +101,7 @@ const liveNeighbors = (boardReference, x, y) => {
     return neighbors;
 };
 
-const generateNewBoard = (currentBoard) => {
+const updateBoard = (currentBoard) => {
     const newBoard = [];
 
     for (let x = 0; x < currentBoard.length; x++) {
@@ -129,8 +129,8 @@ const generateNewBoard = (currentBoard) => {
 };
 
 // setInterval(() => {
-//     board = generateNewBoard(board);
+//     board = updateBoard(board);
 //     console.log(board);
 // }, 1000);
 
-module.exports = { liveNeighbors, generateNewBoard };
+module.exports = { liveNeighbors, updateBoard };
