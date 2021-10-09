@@ -92,21 +92,17 @@ const liveNeighbors = (boardA, x, y) => {
     return neighbors;
 };
 
-const boardLoop = (currentBoard) => {
-    debugger;
+const generateNewBoard = (currentBoard) => {
     const newBoard = [];
 
-    debugger;
     for (let x = 0; x < currentBoard.length; x++) {
         newBoard.push([]);
         for (let y = 0; y < currentBoard[x].length; y++) {
             const neighbors = liveNeighbors(currentBoard, x, y);
-            debugger;
+
             if (currentBoard[x][y] === 1) {
                 if (neighbors < 2 || neighbors >= 4) {
-                    debugger;
                     newBoard[x][y] = 0;
-                    debugger;
                 } else if (neighbors >= 2 && neighbors < 4) {
                     newBoard[x][y] = 1;
                 }
@@ -114,9 +110,7 @@ const boardLoop = (currentBoard) => {
                 if (neighbors === 3) {
                     newBoard[x][y] = 1;
                 } else {
-                    debugger;
                     newBoard[x][y] = 0;
-                    debugger;
                 }
             }
         }
@@ -126,6 +120,6 @@ const boardLoop = (currentBoard) => {
 };
 
 setInterval(() => {
-    board = boardLoop(board);
+    board = generateNewBoard(board);
     console.log(board);
 }, 1000);
