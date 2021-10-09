@@ -91,7 +91,7 @@ const boardLoop = (currentBoard) => {
             const neighbors = liveNeighbors(currentBoard, x, y);
             debugger;
             if (currentBoard[x][y] === 1) {
-                if (neighbors < 2 || neighbors > 4) {
+                if (neighbors < 2 && neighbors > 4) {
                     debugger;
                     newBoard[x][y] = 0;
                     debugger;
