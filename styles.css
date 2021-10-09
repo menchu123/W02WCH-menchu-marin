@@ -1,5 +1,15 @@
+:root {
+    --bg-color: #81b29a;
+    --gbg-color: #3d405b;
+    --border: #f4f1de;
+}
+
+* {
+    box-sizing: border-box;
+}
+
 body {
-    background-color: #81b29a;
+    background-color: var(--bg-color);
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -11,13 +21,14 @@ body {
 h1 {
     font-size: 40px;
     font-family: monospace;
-    color: #f4f1de;
+    color: var(--border);
 }
 
 .game {
     width: 500px;
     height: 500px;
-    background-color: #3d405b;
+    border: 0.3em var(--border) solid;
+    background-color: var(--gbg-color);
     display: flex;
     flex-direction: column;
 }
@@ -28,6 +39,14 @@ h1 {
 }
 
 .game__col {
-    border: 0.1em #f4f1de solid;
+    border: 0.1em var(--border) solid;
     flex-grow: 1;
+}
+
+.alive {
+    background-color: var(--border);
+}
+
+.dead {
+    background-color: var(--gbg-color);
 }
