@@ -133,4 +133,19 @@ const updateBoard = (currentBoard) => {
 //     console.log(board);
 // }, 1000);
 
+const generateBoard = () => {
+    const gameBoard = document.querySelector(".game");
+
+    for (let row = 0; row < 10; row++) {
+        const newRow = document.createElement("div");
+        gameBoard.appendChild(newRow);
+        for (let col = 0; col < 10; col++) {
+            const newCol = document.createElement("div");
+            newRow.appendChild(newCol);
+        }
+    }
+};
+
+generateBoard();
+
 module.exports = { liveNeighbors, updateBoard };
