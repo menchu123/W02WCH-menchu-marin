@@ -66,8 +66,7 @@ h1 {
     background-size: 37%;
 }
 
-.button--stop:hover,
-.button--stop:active {
+.button--stop:hover {
     background-image: url(img/Asset\ 2\ active.svg);
 }
 
