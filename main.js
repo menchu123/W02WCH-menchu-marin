@@ -8,13 +8,13 @@
 //     [0, 0, 0, 0, 0],
 // ];
 
-let board = [
-    [0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0],
-    [0, 1, 1, 1, 0],
-    [0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0],
-];
+// let board = [
+//     [0, 0, 0, 0, 0],
+//     [0, 0, 0, 0, 0],
+//     [0, 1, 1, 1, 0],
+//     [0, 0, 0, 0, 0],
+//     [0, 0, 0, 0, 0],
+// ];
 
 // let board = [
 //     [0, 0, 0, 0, 0, 0],
@@ -24,6 +24,7 @@ let board = [
 //     [0, 0, 0, 1, 1, 0],
 //     [0, 0, 0, 0, 0, 0],
 // ];
+let board = [];
 
 const liveNeighbors = (boardReference, x, y) => {
     let neighbors = 0;
@@ -126,6 +127,7 @@ const generateBoard = () => {
         const newRow = document.createElement("div");
         gameBoard.appendChild(newRow);
         newRow.classList.add("game__row", `${row}`);
+        board.push([]);
 
         for (let col = 0; col < 25; col++) {
             const newCell = document.createElement("div");
@@ -136,15 +138,22 @@ const generateBoard = () => {
             newCell.onclick = lifeToggle;
 
             newRow.appendChild(newCell);
+            board[row].push(0);
         }
     }
 };
 
 function lifeToggle() {
+    const position = this.id.split("-");
+    const positionx = position[0];
+    const positiony = position[1];
+
     if (this.style.backgroundColor === "rgb(61, 64, 91)") {
         this.style.backgroundColor = "rgb(244, 241, 222)";
+        board[positionx][positiony] = 1;
     } else {
         this.style.backgroundColor = "rgb(61, 64, 91)";
+        board[positionx][positiony] = 0;
     }
 }
 
