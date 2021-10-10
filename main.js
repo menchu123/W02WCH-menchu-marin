@@ -27,7 +27,7 @@
 
 // colors
 
-const lightBackground = "rgb(255, 254, 250)";
+const lightBackground = "rgb(224, 220, 205)";
 const lightDeadCell = "rgb(238, 235, 223)";
 
 // random live colors
