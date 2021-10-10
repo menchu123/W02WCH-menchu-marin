@@ -93,33 +93,6 @@ const liveNeighbors = (boardReference, x, y) => {
     return neighbors;
 };
 
-const updateBoard = (currentBoard) => {
-    const newBoard = [];
-
-    for (let x = 0; x < currentBoard.length; x++) {
-        newBoard.push([]);
-        for (let y = 0; y < currentBoard[x].length; y++) {
-            const neighbors = liveNeighbors(currentBoard, x, y);
-
-            if (currentBoard[x][y] === 1) {
-                if (neighbors < 2 || neighbors >= 4) {
-                    newBoard[x][y] = 0;
-                } else if (neighbors >= 2 && neighbors < 4) {
-                    newBoard[x][y] = 1;
-                }
-            } else if (currentBoard[x][y] === 0) {
-                if (neighbors === 3) {
-                    newBoard[x][y] = 1;
-                } else {
-                    newBoard[x][y] = 0;
-                }
-            }
-        }
-    }
-    board = newBoard;
-    return board;
-};
-
 const generateBoard = () => {
     const gameBoard = document.querySelector(".game");
 
@@ -158,6 +131,45 @@ function lifeToggle() {
 }
 
 generateBoard();
+
+const updateBoard = (currentBoard) => {
+    const newBoard = [];
+
+    for (let x = 0; x < currentBoard.length; x++) {
+        newBoard.push([]);
+        for (let y = 0; y < currentBoard[x].length; y++) {
+            const neighbors = liveNeighbors(currentBoard, x, y);
+
+            if (currentBoard[x][y] === 1) {
+                if (neighbors < 2 || neighbors >= 4) {
+                    newBoard[x][y] = 0;
+
+                    const cell = document.getElementById(`${x}-${y}`);
+                    cell.style.backgroundColor = "rgb(61, 64, 91)";
+                } else if (neighbors >= 2 && neighbors < 4) {
+                    newBoard[x][y] = 1;
+
+                    const cell = document.getElementById(`${x}-${y}`);
+                    cell.style.backgroundColor = "rgb(244, 241, 222)";
+                }
+            } else if (currentBoard[x][y] === 0) {
+                if (neighbors === 3) {
+                    newBoard[x][y] = 1;
+
+                    const cell = document.getElementById(`${x}-${y}`);
+                    cell.style.backgroundColor = "rgb(244, 241, 222)";
+                } else {
+                    newBoard[x][y] = 0;
+
+                    const cell = document.getElementById(`${x}-${y}`);
+                    cell.style.backgroundColor = "rgb(61, 64, 91)";
+                }
+            }
+        }
+    }
+    board = newBoard;
+    return board;
+};
 
 let interval = null;
 const start = () => {
