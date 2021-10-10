@@ -10,9 +10,9 @@
 
 let board = [
     [0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 1],
-    [0, 0, 0, 1, 1],
-    [0, 0, 0, 0, 1],
+    [0, 0, 0, 0, 0],
+    [0, 1, 1, 1, 0],
+    [0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0],
 ];
 
@@ -22,15 +22,6 @@ let board = [
 //     [0, 1, 0, 0, 0, 0],
 //     [0, 0, 0, 0, 1, 0],
 //     [0, 0, 0, 1, 1, 0],
-//     [0, 0, 0, 0, 0, 0],
-// ];
-
-// let board = [
-//     [0, 0, 0, 0, 0, 0],
-//     [0, 0, 0, 1, 0, 0],
-//     [0, 1, 0, 0, 1, 0],
-//     [0, 1, 0, 0, 1, 0],
-//     [0, 0, 1, 0, 0, 0],
 //     [0, 0, 0, 0, 0, 0],
 // ];
 
@@ -128,20 +119,15 @@ const updateBoard = (currentBoard) => {
     return board;
 };
 
-// setInterval(() => {
-//     board = updateBoard(board);
-//     console.log(board);
-// }, 1000);
-
 const generateBoard = () => {
     const gameBoard = document.querySelector(".game");
 
-    for (let row = 0; row < 20; row++) {
+    for (let row = 0; row < 25; row++) {
         const newRow = document.createElement("div");
         gameBoard.appendChild(newRow);
         newRow.classList.add("game__row", `${row}`);
 
-        for (let col = 0; col < 20; col++) {
+        for (let col = 0; col < 25; col++) {
             const newCol = document.createElement("div");
             newRow.appendChild(newCol);
             newCol.classList.add("game__cell", `${row}-${col}`);
@@ -151,4 +137,16 @@ const generateBoard = () => {
 
 generateBoard();
 
-module.exports = { liveNeighbors, updateBoard };
+let interval = null;
+const start = () => {
+    interval = setInterval(() => {
+        board = updateBoard(board);
+        console.log(board);
+    }, 1000);
+};
+
+const stop = () => {
+    clearInterval(interval);
+};
+
+// module.exports = { liveNeighbors, updateBoard };
