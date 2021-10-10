@@ -46,6 +46,7 @@ h1 {
     box-shadow: var(--shadow);
     border-radius: 50%;
     margin-left: 50px;
+    margin-right: 50px;
     margin-bottom: 30px;
 }
 
