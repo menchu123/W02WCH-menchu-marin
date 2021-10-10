@@ -2,6 +2,8 @@
     --bg-color: rgb(255, 254, 250);
     --gbg-color: rgb(238, 235, 223);
     --border: rgb(255, 254, 250);
+    --shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px,
+        rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
 }
 
 * {
@@ -28,12 +30,42 @@ main {
 h1 {
     font-size: 40px;
     font-family: monospace;
-    color: black;
+    color: var(--gbg-color);
+    margin-right: 50px;
 }
 
 .button {
     display: block;
     cursor: pointer;
+    width: 100px;
+    height: 100px;
+    background-color: var(--bg-color);
+    box-shadow: var(--shadow);
+    border-radius: 50%;
+    margin-left: 50px;
+    margin-bottom: 30px;
+}
+
+.button--start {
+    background-image: url(img/Asset\ 3.svg);
+    background-repeat: no-repeat;
+    background-position-y: center;
+    background-position-x: 37px;
+    background-size: 35%;
+}
+
+.button--stop {
+    background-image: url(img/Asset\ 2.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 37%;
+}
+
+.button--clear {
+    background-image: url(img/Asset\ 1.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 45%;
 }
 
 .alive {
@@ -48,8 +80,7 @@ h1 {
     background-color: var(--gbg-color);
     display: flex;
     flex-direction: column;
-    box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px,
-        rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
+    box-shadow: var(--shadow);
 }
 
 .game__row {
