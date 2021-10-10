@@ -102,7 +102,7 @@ const generateBoard = () => {
         newRow.classList.add("game__row", `${row}`);
         board.push([]);
 
-        for (let col = 0; col < 25; col++) {
+        for (let col = 0; col < 50; col++) {
             const newCell = document.createElement("div");
 
             newCell.classList.add("game__cell");
