@@ -24,6 +24,10 @@ h1 {
     color: var(--border);
 }
 
+.alive {
+    background-color: var(--border);
+}
+
 .game {
     width: 500px;
     height: 500px;
@@ -41,12 +45,4 @@ h1 {
 .game__cell {
     border: 0.1em var(--border) solid;
     flex-grow: 1;
-}
-
-.alive {
-    background-color: var(--border);
-}
-
-.dead {
-    background-color: var(--gbg-color);
 }

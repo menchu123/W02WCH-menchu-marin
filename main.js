@@ -128,12 +128,25 @@ const generateBoard = () => {
         newRow.classList.add("game__row", `${row}`);
 
         for (let col = 0; col < 25; col++) {
-            const newCol = document.createElement("div");
-            newRow.appendChild(newCol);
-            newCol.classList.add("game__cell", `${row}-${col}`);
+            const newCell = document.createElement("div");
+
+            newCell.classList.add("game__cell");
+            newCell.setAttribute("id", `${row}-${col}`);
+            newCell.style.backgroundColor = "#3d405b";
+            newCell.onclick = lifeToggle;
+
+            newRow.appendChild(newCell);
         }
     }
 };
+
+function lifeToggle() {
+    if (this.style.backgroundColor === "rgb(61, 64, 91)") {
+        this.style.backgroundColor = "rgb(244, 241, 222)";
+    } else {
+        this.style.backgroundColor = "rgb(61, 64, 91)";
+    }
+}
 
 generateBoard();
 
