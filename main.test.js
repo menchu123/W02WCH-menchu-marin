@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 const { liveNeighbors, updateBoard } = require("./main");
 
 describe("Given the liveNeighbors function", () => {

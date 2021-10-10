@@ -8,13 +8,13 @@
 //     [0, 0, 0, 0, 0],
 // ];
 
-let board = [
-    [0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 1],
-    [0, 0, 0, 1, 1],
-    [0, 0, 0, 0, 1],
-    [0, 0, 0, 0, 0],
-];
+// let board = [
+//     [0, 0, 0, 0, 0],
+//     [0, 0, 0, 0, 0],
+//     [0, 1, 1, 1, 0],
+//     [0, 0, 0, 0, 0],
+//     [0, 0, 0, 0, 0],
+// ];
 
 // let board = [
 //     [0, 0, 0, 0, 0, 0],
@@ -24,15 +24,7 @@ let board = [
 //     [0, 0, 0, 1, 1, 0],
 //     [0, 0, 0, 0, 0, 0],
 // ];
-
-// let board = [
-//     [0, 0, 0, 0, 0, 0],
-//     [0, 0, 0, 1, 0, 0],
-//     [0, 1, 0, 0, 1, 0],
-//     [0, 1, 0, 0, 1, 0],
-//     [0, 0, 1, 0, 0, 0],
-//     [0, 0, 0, 0, 0, 0],
-// ];
+let board = [];
 
 const liveNeighbors = (boardReference, x, y) => {
     let neighbors = 0;
@@ -101,6 +93,45 @@ const liveNeighbors = (boardReference, x, y) => {
     return neighbors;
 };
 
+const generateBoard = () => {
+    const gameBoard = document.querySelector(".game");
+
+    for (let row = 0; row < 25; row++) {
+        const newRow = document.createElement("div");
+        gameBoard.appendChild(newRow);
+        newRow.classList.add("game__row", `${row}`);
+        board.push([]);
+
+        for (let col = 0; col < 25; col++) {
+            const newCell = document.createElement("div");
+
+            newCell.classList.add("game__cell");
+            newCell.setAttribute("id", `${row}-${col}`);
+            newCell.style.backgroundColor = "#3d405b";
+            newCell.onclick = lifeToggle;
+
+            newRow.appendChild(newCell);
+            board[row].push(0);
+        }
+    }
+};
+
+function lifeToggle() {
+    const position = this.id.split("-");
+    const positionx = position[0];
+    const positiony = position[1];
+
+    if (this.style.backgroundColor === "rgb(61, 64, 91)") {
+        this.style.backgroundColor = "rgb(244, 241, 222)";
+        board[positionx][positiony] = 1;
+    } else {
+        this.style.backgroundColor = "rgb(61, 64, 91)";
+        board[positionx][positiony] = 0;
+    }
+}
+
+generateBoard();
+
 const updateBoard = (currentBoard) => {
     const newBoard = [];
 
@@ -112,14 +143,26 @@ const updateBoard = (currentBoard) => {
             if (currentBoard[x][y] === 1) {
                 if (neighbors < 2 || neighbors >= 4) {
                     newBoard[x][y] = 0;
+
+                    const cell = document.getElementById(`${x}-${y}`);
+                    cell.style.backgroundColor = "rgb(61, 64, 91)";
                 } else if (neighbors >= 2 && neighbors < 4) {
                     newBoard[x][y] = 1;
+
+                    const cell = document.getElementById(`${x}-${y}`);
+                    cell.style.backgroundColor = "rgb(244, 241, 222)";
                 }
             } else if (currentBoard[x][y] === 0) {
                 if (neighbors === 3) {
                     newBoard[x][y] = 1;
+
+                    const cell = document.getElementById(`${x}-${y}`);
+                    cell.style.backgroundColor = "rgb(244, 241, 222)";
                 } else {
                     newBoard[x][y] = 0;
+
+                    const cell = document.getElementById(`${x}-${y}`);
+                    cell.style.backgroundColor = "rgb(61, 64, 91)";
                 }
             }
         }
@@ -128,27 +171,16 @@ const updateBoard = (currentBoard) => {
     return board;
 };
 
-// setInterval(() => {
-//     board = updateBoard(board);
-//     console.log(board);
-// }, 1000);
-
-const generateBoard = () => {
-    const gameBoard = document.querySelector(".game");
-
-    for (let row = 0; row < 20; row++) {
-        const newRow = document.createElement("div");
-        gameBoard.appendChild(newRow);
-        newRow.classList.add("game__row", `${row}`);
-
-        for (let col = 0; col < 20; col++) {
-            const newCol = document.createElement("div");
-            newRow.appendChild(newCol);
-            newCol.classList.add("game__col", `${row}-${col}`);
-        }
-    }
+let interval = null;
+const start = () => {
+    interval = setInterval(() => {
+        board = updateBoard(board);
+        console.log(board);
+    }, 1000);
 };
 
-generateBoard();
+const stop = () => {
+    clearInterval(interval);
+};
 
-module.exports = { liveNeighbors, updateBoard };
+// module.exports = { liveNeighbors, updateBoard };
