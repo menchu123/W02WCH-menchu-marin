@@ -203,8 +203,13 @@ const clearBoard = (currentBoard) => {
     }
 };
 
+const startButton = document.querySelector(".button--start");
+const stopButton = document.querySelector(".button--stop");
+
 let interval = null;
 const start = () => {
+    startButton.style.display = "none";
+    stopButton.style.display = "block";
     clearInterval(interval);
     interval = setInterval(() => {
         board = updateBoard(board);
@@ -213,6 +218,8 @@ const start = () => {
 };
 
 const stop = () => {
+    startButton.style.display = "block";
+    stopButton.style.display = "none";
     clearInterval(interval);
 };
 

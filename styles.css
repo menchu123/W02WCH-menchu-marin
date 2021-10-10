@@ -54,11 +54,21 @@ h1 {
     background-size: 35%;
 }
 
+.button--start:hover {
+    background-image: url(img/Asset\ 3\ active.svg);
+}
+
 .button--stop {
+    display: none;
     background-image: url(img/Asset\ 2.svg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: 37%;
+}
+
+.button--stop:hover,
+.button--stop:active {
+    background-image: url(img/Asset\ 2\ active.svg);
 }
 
 .button--clear {
@@ -68,8 +78,8 @@ h1 {
     background-size: 45%;
 }
 
-.alive {
-    background-color: var(--border);
+.button--clear:hover {
+    background-image: url(img/Asset\ 1\ active.svg);
 }
 
 .game {
