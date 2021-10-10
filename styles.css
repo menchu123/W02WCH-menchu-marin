@@ -125,6 +125,7 @@ h1 {
     display: flex;
     flex-direction: column;
     box-shadow: var(--shadow);
+    position: relative;
 }
 
 .game__row {
@@ -154,3 +155,21 @@ h1 {
 .info-button:hover {
     background-image: url(img/Assets\ info\ active.svg);
 }
+
+.info-modal {
+    position: absolute;
+    background-color: var(--bg-color);
+    height: 100%;
+    width: 100%;
+    padding: 15px 30px;
+    font-size: 15px;
+    opacity: 0.8;
+    display: block;
+    font-family: "Poppins", sans-serif;
+    color: #38160d;
+    overflow: scroll;
+}
+
+/* .info-modal__header {
+
+} */
