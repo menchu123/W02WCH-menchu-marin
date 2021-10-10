@@ -44,6 +44,11 @@ const randomLiveColor = () => {
     return randomColors[randomIndex];
 };
 
+// document elements
+const startButton = document.querySelector(".button--start");
+const stopButton = document.querySelector(".button--stop");
+const drawButton = document.querySelector(".button--draw");
+
 let board = [];
 
 const liveNeighbors = (boardReference, x, y) => {
@@ -113,6 +118,21 @@ const liveNeighbors = (boardReference, x, y) => {
     return neighbors;
 };
 
+const draw = () => {
+    const cells = document.querySelectorAll(".game__cell");
+    cells.forEach((cell) => {
+        cell.onmouseover = lifeToggle;
+    });
+};
+
+const cursor = () => {
+    const cells = document.querySelectorAll(".game__cell");
+    cells.forEach((cell) => {
+        cell.onmouseover = null;
+    });
+    console.log("ok");
+};
+
 const generateBoard = () => {
     const gameBoard = document.querySelector(".game");
 
@@ -129,12 +149,12 @@ const generateBoard = () => {
             newCell.setAttribute("id", `${row}-${col}`);
             newCell.style.backgroundColor = lightDeadCell;
             newCell.onclick = lifeToggle;
-
             newRow.appendChild(newCell);
             board[row].push(0);
         }
     }
 };
+
 console.log(board);
 function lifeToggle() {
     const position = this.id.split("-");
@@ -202,9 +222,6 @@ const clearBoard = (currentBoard) => {
         }
     }
 };
-
-const startButton = document.querySelector(".button--start");
-const stopButton = document.querySelector(".button--stop");
 
 let interval = null;
 const start = () => {
