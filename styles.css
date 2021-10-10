@@ -38,7 +38,7 @@ h1 {
     display: flex;
 }
 
-.game__col {
+.game__cell {
     border: 0.1em var(--border) solid;
     flex-grow: 1;
 }

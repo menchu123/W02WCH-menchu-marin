@@ -144,7 +144,7 @@ const generateBoard = () => {
         for (let col = 0; col < 20; col++) {
             const newCol = document.createElement("div");
             newRow.appendChild(newCol);
-            newCol.classList.add("game__col", `${row}-${col}`);
+            newCol.classList.add("game__cell", `${row}-${col}`);
         }
     }
 };
