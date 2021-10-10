@@ -236,7 +236,7 @@ const start = () => {
     interval = setInterval(() => {
         board = updateBoard(board);
         console.log(board);
-    }, 1000);
+    }, 500);
 };
 
 const stop = () => {
