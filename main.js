@@ -96,13 +96,13 @@ const liveNeighbors = (boardReference, x, y) => {
 const generateBoard = () => {
     const gameBoard = document.querySelector(".game");
 
-    for (let row = 0; row < 25; row++) {
+    for (let row = 0; row < 35; row++) {
         const newRow = document.createElement("div");
         gameBoard.appendChild(newRow);
         newRow.classList.add("game__row", `${row}`);
         board.push([]);
 
-        for (let col = 0; col < 25; col++) {
+        for (let col = 0; col < 35; col++) {
             const newCell = document.createElement("div");
 
             newCell.classList.add("game__cell");
@@ -115,7 +115,7 @@ const generateBoard = () => {
         }
     }
 };
-
+console.log(board);
 function lifeToggle() {
     const position = this.id.split("-");
     const positionx = position[0];
