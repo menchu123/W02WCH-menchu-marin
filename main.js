@@ -128,7 +128,7 @@ const generateBoard = () => {
             newCell.classList.add("game__cell");
             newCell.setAttribute("id", `${row}-${col}`);
             newCell.style.backgroundColor = lightDeadCell;
-            newCell.onmouseover = lifeToggle;
+            newCell.onclick = lifeToggle;
 
             newRow.appendChild(newCell);
             board[row].push(0);
