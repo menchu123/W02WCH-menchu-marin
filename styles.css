@@ -1,7 +1,7 @@
 :root {
-    --bg-color: #81b29a;
-    --gbg-color: #3d405b;
-    --border: #f4f1de;
+    --bg-color: rgb(255, 254, 250);
+    --gbg-color: rgb(238, 235, 223);
+    --border: rgb(255, 254, 250);
 }
 
 * {
@@ -28,7 +28,7 @@ main {
 h1 {
     font-size: 40px;
     font-family: monospace;
-    color: var(--border);
+    color: black;
 }
 
 button {
@@ -42,10 +42,13 @@ button {
 .game {
     width: 550px;
     height: 550px;
-    border: 0.3em var(--border) solid;
+    border: 1em var(--border) solid;
+    border-radius: 20px;
     background-color: var(--gbg-color);
     display: flex;
     flex-direction: column;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px,
+        rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
 }
 
 .game__row {
