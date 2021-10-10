@@ -43,6 +43,7 @@ h1 {
     margin-right: 50px;
     text-align: right;
     margin-bottom: 20px;
+    cursor: default;
 }
 
 .button {
@@ -167,6 +168,7 @@ h1 {
     font-family: "Poppins", sans-serif;
     color: #38160d;
     overflow: scroll;
+    cursor: default;
 }
 
 .button--close-modal {
