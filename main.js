@@ -1,33 +1,6 @@
-// crear array de 5x5
-
-// let board = [
-//     [0, 0, 0, 0, 0],
-//     [0, 0, 1, 0, 0],
-//     [0, 0, 1, 0, 0],
-//     [0, 0, 1, 0, 0],
-//     [0, 0, 0, 0, 0],
-// ];
-
-// let board = [
-//     [0, 0, 0, 0, 0],
-//     [0, 0, 0, 0, 0],
-//     [0, 1, 1, 1, 0],
-//     [0, 0, 0, 0, 0],
-//     [0, 0, 0, 0, 0],
-// ];
-
-// let board = [
-//     [0, 0, 0, 0, 0, 0],
-//     [0, 1, 1, 0, 0, 0],
-//     [0, 1, 0, 0, 0, 0],
-//     [0, 0, 0, 0, 1, 0],
-//     [0, 0, 0, 1, 1, 0],
-//     [0, 0, 0, 0, 0, 0],
-// ];
-
 // colors
 
-const lightBackground = "rgb(224, 220, 205)";
+// const lightBackground = "rgb(224, 220, 205)";
 const lightDeadCell = "rgb(238, 235, 223)";
 
 // random live colors
@@ -119,24 +92,19 @@ const liveNeighbors = (boardReference, x, y) => {
     return neighbors;
 };
 
-const draw = () => {
-    drawButton.style.display = "none";
-    clickButton.style.display = "block";
-    const cells = document.querySelectorAll(".game__cell");
-    cells.forEach((cell) => {
-        cell.onmouseover = lifeToggle;
-    });
-};
+function lifeToggle() {
+    const position = this.id.split("-");
+    const positionx = position[0];
+    const positiony = position[1];
 
-const cursor = () => {
-    drawButton.style.display = "block";
-    clickButton.style.display = "none";
-    const cells = document.querySelectorAll(".game__cell");
-    cells.forEach((cell) => {
-        cell.onmouseover = null;
-    });
-    console.log("ok");
-};
+    if (this.style.backgroundColor === lightDeadCell) {
+        this.style.backgroundColor = randomLiveColor();
+        board[positionx][positiony] = 1;
+    } else {
+        this.style.backgroundColor = lightDeadCell;
+        board[positionx][positiony] = 0;
+    }
+}
 
 const generateBoard = () => {
     const gameBoard = document.querySelector(".game");
@@ -160,20 +128,23 @@ const generateBoard = () => {
     }
 };
 
-console.log(board);
-function lifeToggle() {
-    const position = this.id.split("-");
-    const positionx = position[0];
-    const positiony = position[1];
+const draw = () => {
+    drawButton.style.display = "none";
+    clickButton.style.display = "block";
+    const cells = document.querySelectorAll(".game__cell");
+    cells.forEach((cell) => {
+        cell.onmouseover = lifeToggle;
+    });
+};
 
-    if (this.style.backgroundColor === lightDeadCell) {
-        this.style.backgroundColor = randomLiveColor();
-        board[positionx][positiony] = 1;
-    } else {
-        this.style.backgroundColor = lightDeadCell;
-        board[positionx][positiony] = 0;
-    }
-}
+const cursor = () => {
+    drawButton.style.display = "block";
+    clickButton.style.display = "none";
+    const cells = document.querySelectorAll(".game__cell");
+    cells.forEach((cell) => {
+        cell.onmouseover = null;
+    });
+};
 
 generateBoard();
 
@@ -235,7 +206,6 @@ const start = () => {
     clearInterval(interval);
     interval = setInterval(() => {
         board = updateBoard(board);
-        console.log(board);
     }, 500);
 };
 
