@@ -205,6 +205,7 @@ const clearBoard = (currentBoard) => {
 
 let interval = null;
 const start = () => {
+    clearInterval(interval);
     interval = setInterval(() => {
         board = updateBoard(board);
         console.log(board);
