@@ -128,7 +128,7 @@ const generateBoard = () => {
             newCell.classList.add("game__cell");
             newCell.setAttribute("id", `${row}-${col}`);
             newCell.style.backgroundColor = lightDeadCell;
-            newCell.onclick = lifeToggle;
+            newCell.onmouseover = lifeToggle;
 
             newRow.appendChild(newCell);
             board[row].push(0);
@@ -224,6 +224,8 @@ const stop = () => {
 };
 
 const reset = () => {
+    startButton.style.display = "block";
+    stopButton.style.display = "none";
     clearInterval(interval);
     clearBoard(board);
 };
