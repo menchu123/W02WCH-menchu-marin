@@ -29,8 +29,8 @@ h1 {
 }
 
 .game {
-    width: 1000px;
-    height: 500px;
+    width: 550px;
+    height: 550px;
     border: 0.3em var(--border) solid;
     background-color: var(--gbg-color);
     display: flex;
@@ -43,6 +43,6 @@ h1 {
 }
 
 .game__cell {
-    border: 0.1em var(--border) solid;
+    border: 0.04em var(--border) solid;
     flex-grow: 1;
 }
