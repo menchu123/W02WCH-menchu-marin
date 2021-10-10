@@ -20,6 +20,13 @@ body {
     align-items: center;
     font-size: 16px;
 }
+
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
 main {
     display: flex;
     flex-direction: row;
@@ -35,6 +42,8 @@ h1 {
     color: var(--gbg-color);
     margin-right: 50px;
     text-align: right;
+    margin-bottom: 20px;
+    cursor: default;
 }
 
 .button {
@@ -117,6 +126,7 @@ h1 {
     display: flex;
     flex-direction: column;
     box-shadow: var(--shadow);
+    position: relative;
 }
 
 .game__row {
@@ -127,4 +137,56 @@ h1 {
 .game__cell {
     border: 0.04em var(--border) solid;
     flex-grow: 1;
+}
+
+.info-button {
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    background-color: var(--bg-color);
+    box-shadow: var(--shadow);
+    border-radius: 50%;
+    margin-right: 50px;
+    background-image: url(img/Assets\ info.svg);
+    background-repeat: no-repeat;
+    background-size: 14%;
+    background-position: center;
+}
+
+.info-button:hover {
+    background-image: url(img/Assets\ info\ active.svg);
+}
+
+.info-modal {
+    position: absolute;
+    background-color: rgb(255, 254, 250, 0.8);
+    height: 100%;
+    width: 100%;
+    padding: 15px 30px;
+    font-size: 15px;
+    display: none;
+    font-family: "Poppins", sans-serif;
+    color: #38160d;
+    overflow: scroll;
+    cursor: default;
+}
+
+.button--close-modal {
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    background-color: var(--bg-color);
+    box-shadow: var(--shadow);
+    border-radius: 50%;
+    margin-right: 50px;
+    background-image: url(img/close.svg);
+    background-repeat: no-repeat;
+    background-size: 50%;
+    background-position: center;
+    position: absolute;
+    right: -10px;
+}
+
+.button--close-modal:hover {
+    background-image: url(img/close\ active.svg);
 }

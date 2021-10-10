@@ -23,6 +23,10 @@ const stopButton = document.querySelector(".button--stop");
 const drawButton = document.querySelector(".button--draw");
 const clickButton = document.querySelector(".button--click");
 
+const infoButton = document.querySelector(".info-button");
+const closeInfoButton = document.querySelector(".button--close-modal");
+const modal = document.querySelector(".info-modal");
+
 let board = [];
 
 const liveNeighbors = (boardReference, x, y) => {
@@ -144,6 +148,14 @@ const cursor = () => {
     cells.forEach((cell) => {
         cell.onmouseover = null;
     });
+};
+
+const info = () => {
+    modal.style.display = "block";
+};
+
+const closeInfo = () => {
+    modal.style.display = "none";
 };
 
 generateBoard();
