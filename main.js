@@ -24,6 +24,26 @@
 //     [0, 0, 0, 1, 1, 0],
 //     [0, 0, 0, 0, 0, 0],
 // ];
+
+// colors
+
+const lightBackground = "rgb(255, 254, 250)";
+const lightDeadCell = "rgb(238, 235, 223)";
+
+// random live colors
+const light1 = "rgb(95, 15, 64)";
+const light2 = "rgb(154, 3, 30)";
+const light3 = "rgb(251, 139, 36)";
+const light4 = "rgb(227, 100, 20)";
+const light5 = "rgb(15, 76, 92)";
+
+// generate random color
+const randomLiveColor = () => {
+    const randomColors = [light1, light2, light3, light4, light5];
+    const randomIndex = Math.floor(Math.random() * randomColors.length);
+    return randomColors[randomIndex];
+};
+
 let board = [];
 
 const liveNeighbors = (boardReference, x, y) => {
@@ -107,7 +127,7 @@ const generateBoard = () => {
 
             newCell.classList.add("game__cell");
             newCell.setAttribute("id", `${row}-${col}`);
-            newCell.style.backgroundColor = "#3d405b";
+            newCell.style.backgroundColor = lightDeadCell;
             newCell.onclick = lifeToggle;
 
             newRow.appendChild(newCell);
@@ -121,11 +141,11 @@ function lifeToggle() {
     const positionx = position[0];
     const positiony = position[1];
 
-    if (this.style.backgroundColor === "rgb(61, 64, 91)") {
-        this.style.backgroundColor = "rgb(244, 241, 222)";
+    if (this.style.backgroundColor === lightDeadCell) {
+        this.style.backgroundColor = randomLiveColor();
         board[positionx][positiony] = 1;
     } else {
-        this.style.backgroundColor = "rgb(61, 64, 91)";
+        this.style.backgroundColor = lightDeadCell;
         board[positionx][positiony] = 0;
     }
 }
@@ -145,24 +165,24 @@ const updateBoard = (currentBoard) => {
                     newBoard[x][y] = 0;
 
                     const cell = document.getElementById(`${x}-${y}`);
-                    cell.style.backgroundColor = "rgb(61, 64, 91)";
+                    cell.style.backgroundColor = lightDeadCell;
                 } else if (neighbors >= 2 && neighbors < 4) {
                     newBoard[x][y] = 1;
 
                     const cell = document.getElementById(`${x}-${y}`);
-                    cell.style.backgroundColor = "rgb(244, 241, 222)";
+                    cell.style.backgroundColor = randomLiveColor();
                 }
             } else if (currentBoard[x][y] === 0) {
                 if (neighbors === 3) {
                     newBoard[x][y] = 1;
 
                     const cell = document.getElementById(`${x}-${y}`);
-                    cell.style.backgroundColor = "rgb(244, 241, 222)";
+                    cell.style.backgroundColor = randomLiveColor();
                 } else {
                     newBoard[x][y] = 0;
 
                     const cell = document.getElementById(`${x}-${y}`);
-                    cell.style.backgroundColor = "rgb(61, 64, 91)";
+                    cell.style.backgroundColor = lightDeadCell;
                 }
             }
         }
@@ -174,7 +194,7 @@ const updateBoard = (currentBoard) => {
 const clearBoard = (currentBoard) => {
     const cells = document.querySelectorAll(".game__cell");
     cells.forEach((cell) => {
-        cell.style.backgroundColor = "rgb(61, 64, 91)";
+        cell.style.backgroundColor = lightDeadCell;
     });
     for (let i = 0; i < currentBoard.length; i++) {
         for (let j = 0; j < currentBoard[i].length; j++) {
@@ -183,8 +203,14 @@ const clearBoard = (currentBoard) => {
     }
 };
 
+const startButton = document.querySelector(".button--start");
+const stopButton = document.querySelector(".button--stop");
+
 let interval = null;
 const start = () => {
+    startButton.style.display = "none";
+    stopButton.style.display = "block";
+    clearInterval(interval);
     interval = setInterval(() => {
         board = updateBoard(board);
         console.log(board);
@@ -192,6 +218,8 @@ const start = () => {
 };
 
 const stop = () => {
+    startButton.style.display = "block";
+    stopButton.style.display = "none";
     clearInterval(interval);
 };
 
