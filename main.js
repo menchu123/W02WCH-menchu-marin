@@ -48,6 +48,7 @@ const randomLiveColor = () => {
 const startButton = document.querySelector(".button--start");
 const stopButton = document.querySelector(".button--stop");
 const drawButton = document.querySelector(".button--draw");
+const clickButton = document.querySelector(".button--click");
 
 let board = [];
 
@@ -119,6 +120,8 @@ const liveNeighbors = (boardReference, x, y) => {
 };
 
 const draw = () => {
+    drawButton.style.display = "none";
+    clickButton.style.display = "block";
     const cells = document.querySelectorAll(".game__cell");
     cells.forEach((cell) => {
         cell.onmouseover = lifeToggle;
@@ -126,6 +129,8 @@ const draw = () => {
 };
 
 const cursor = () => {
+    drawButton.style.display = "block";
+    clickButton.style.display = "none";
     const cells = document.querySelectorAll(".game__cell");
     cells.forEach((cell) => {
         cell.onmouseover = null;
