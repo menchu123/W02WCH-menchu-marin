@@ -171,6 +171,18 @@ const updateBoard = (currentBoard) => {
     return board;
 };
 
+const clearBoard = (currentBoard) => {
+    const cells = document.querySelectorAll(".game__cell");
+    cells.forEach((cell) => {
+        cell.style.backgroundColor = "rgb(61, 64, 91)";
+    });
+    for (let i = 0; i < currentBoard.length; i++) {
+        for (let j = 0; j < currentBoard[i].length; j++) {
+            currentBoard[i][j] = 0;
+        }
+    }
+};
+
 let interval = null;
 const start = () => {
     interval = setInterval(() => {
@@ -181,6 +193,11 @@ const start = () => {
 
 const stop = () => {
     clearInterval(interval);
+};
+
+const reset = () => {
+    clearInterval(interval);
+    clearBoard(board);
 };
 
 // module.exports = { liveNeighbors, updateBoard };
